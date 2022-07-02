@@ -14,8 +14,6 @@ fw-external-y := $(subst $(quote),,$(CONFIG_EXTRA_FIRMWARE))
 
 fw-shipped-$(CONFIG_FIVE_TEE_DRIVER) += five/ffffffff000000000000000000000072.tlbin
 
-fw-external-$(CONFIG_TOUCHSCREEN_IST4050) += tsp_imagis/ist40xx_a31.bin tsp_imagis/ist40xx_a31_cmcs.bin
-fw-external-$(CONFIG_TOUCHSCREEN_ZINITIX_ZT75XX) += tsp_zinitix/zt7548_a41.bin
 fw-external-$(CONFIG_TOUCHSCREEN_NT36xxx_HOSTDL_SPI) += tsp_novatek/nt36525_a01core_tp.bin tsp_novatek/nt36525_a01core_mp.bin
 fw-external-$(CONFIG_TOUCHSCREEN_SYNAPTICS_TCM) += tsp_synaptics/td4150_a01core.img
 fw-external-$(CONFIG_SENSORS_A96T3X6_A01CORE) += abov/a96t356_a01core.fw.ihex
