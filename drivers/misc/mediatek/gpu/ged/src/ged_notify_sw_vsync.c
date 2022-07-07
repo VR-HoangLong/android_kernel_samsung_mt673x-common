@@ -511,7 +511,7 @@ static void ged_dump_fw_handle(struct work_struct *psWork)
 		= GED_CONTAINER_OF(psWork, struct GED_DUMP_FW, sWork);
 
 	if (psNotify) {
-		MTKFWDump();
+		//MTKFWDump();
 		ged_free(psNotify, sizeof(struct GED_DUMP_FW));
 	}
 }

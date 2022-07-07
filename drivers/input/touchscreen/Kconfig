@@ -1255,6 +1255,18 @@ config TOUCHSCREEN_MTK_TOUCH
 
          To compile this dirver for used touch IC.
 
+config TOUCHSCREEN_ZINITIX_BT541
+	tristate "Zinitix bt541 touchscreen support"
+	depends on I2C
+	help
+	  Say Y here if you have a touchscreen using Zinitix bt541,
+	  or something similar enough.
+
+	  If unsure, say N.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called zinitix.
+
 source "drivers/input/touchscreen/melfas_mss100_a/Kconfig"
 source "drivers/input/touchscreen/synaptics/td4150/Kconfig"
 source "drivers/input/touchscreen/novatek/nt36525/Kconfig"

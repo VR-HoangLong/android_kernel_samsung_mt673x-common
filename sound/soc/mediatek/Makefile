@@ -94,6 +94,10 @@ obj-y += common_int/
 
 obj-y += $(AUDIO_PLATFORM)/
 
+# Old architecture
+obj-y += common/
+obj-$(CONFIG_MT_SND_SOC_V3) += mt6735/
+
 # AP include path
 subdir-ccflags-y += -Werror -I$(src)/$(AUDIO_PLATFORM)
 endif

@@ -336,6 +336,8 @@ extern struct LCM_DRIVER ea8076_fhdp_dsi_cmd_lcm_drv;
 extern struct LCM_DRIVER ea8076g_fhdplus_dis_cmd_lcm_drv;
 extern struct LCM_DRIVER ea8076g_fhdplus_dis_cmd_a31_lcm_drv;
 extern struct LCM_DRIVER td4150_hdp_dsi_lm36274_lcm_drv;
+extern struct LCM_DRIVER s6d78a0_qhd_dsi_vdo_drv;
+extern struct LCM_DRIVER mtk_gen_panel_drv;
 #if defined(CONFIG_SMCDSD_PANEL)
 extern struct LCM_DRIVER smcdsd_panel_drv;
 #endif

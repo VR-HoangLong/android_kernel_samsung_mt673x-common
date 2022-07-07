@@ -48,6 +48,14 @@
 #define AUDIO_MEM_IOREMAP
 #define AUDIO_DL2_ISR_COPY_SUPPORT
 
+#ifdef DEBUG_AUDDRV
+#define PRINTK_AUDDRV(format, args...) pr_debug(format, ##args)
+#define pr_aud(format, args...) pr_debug(format, ##args)
+#else
+#define PRINTK_AUDDRV(format, args...)
+#define pr_aud(format, args...)
+#endif
+
 /* if need assert , use AUDIO_ASSERT(true) */
 #define AUDIO_ASSERT(value) WARN_ON(value)
 
