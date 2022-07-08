@@ -23,7 +23,7 @@
 #endif
 
 / {
-	model = "MT6735";
+	model = "Samsung GrandPrimePlus LTE board based on MT6737T";
 	compatible = "mediatek,MT6735";
 	interrupt-parent = <&gic>;
 	#address-cells = <2>;
@@ -233,6 +233,18 @@ firmware_class.path=/vendor/firmware";
 			size = <0 0x10000>; /* PCM_FIRMWARE_SIZE * DYNA_LOAD_PCM_MAX = 4K * 4 */
 			alignment = <0 0x10000>;
 			alloc-ranges = <0 0x40000000 0 0x60000000>;
+		};
+
+		sec-log@0x43700000 {
+			reg = <0 0x43700000 0 0x200000>;
+		};
+
+		sec-lastkmsg@0x43900000 {
+			reg = <0 0x43900000 0 0x200000>;
+		};
+
+		sec-debugmagic@0x43030000 {
+			reg = <0 0x43030000 0 0x1000>;
 		};
 	};
 
@@ -3022,6 +3034,164 @@ firmware_class.path=/vendor/firmware";
 	};
 
 /* sensor end */
+/*SEC VIBRATOR */
+	sec_vib {
+		compatible = "sec_vib";
+		sec_vib_pdata {
+			status = "okay";
+			sec_vib,max_timeout = <10000>;
+			sec_vib,ldo_type = <0>;
+			sec_vib,regulator = "vibr";
+		};
+	};
+
+	/* dummy nodes for cust_eint */
+	gse_1: gse_1 {
+		compatible = "mediatek, gse_1-eint";
+		status = "disabled";
+	};
+
+	ext_buck_oc: ext_buck_oc {
+		compatible = "mediatek, ext_buck_oc-eint";
+		status = "disabled";
+	};
+	
+	
+	/* Samsung Feature for all MT6735 models */
+	input_booster {
+		status = "okay";
+		compatible = "input_booster";
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		booster_key@1 {
+			input_booster,label = "KEY";
+			input_booster,type = <0>;	/* BOOSTER_DEVICE_KEY */
+
+			input_booster,levels = <1>;
+
+			/* Frequency table */
+			/* for level	:	1_Head */
+			input_booster,cpu_freqs = <1170000>;
+			input_booster,core_num_lock = <2>;
+
+			/* Time table */
+			input_booster,head_times = <200>;
+			input_booster,tail_times = <0>;
+
+		};
+		booster_key@2 {
+			input_booster,label = "TOUCHKEY";
+			input_booster,type = <1>;	/* BOOSTER_DEVICE_TOUCHKEY */
+
+			input_booster,levels = <1>;
+
+			/* Frequency table */
+			/* for level	:	1_Head */
+			input_booster,cpu_freqs = <1040000>;
+			input_booster,core_num_lock = <2>;
+
+			/* Time table */
+			input_booster,head_times = <0>;
+			input_booster,tail_times = <300>;
+		};
+		booster_key@3 {
+			input_booster,label = "TOUCH";
+			input_booster,type = <2>;	/* BOOSTER_DEVICE_TOUCH */
+
+			input_booster,levels = <1 2 3>;
+
+			/* Frequency table */
+			/* for level	:	1_Head, 2_Head, 2_Tail */
+			input_booster,cpu_freqs = <1170000 1170000 1040000>;
+			input_booster,core_num_lock = <4 4 2>;
+
+			/* Time table */
+			input_booster,head_times = <200 200 0>;
+			input_booster,tail_times = <0 0 300>;
+		};
+		booster_key@4 { // Input Booster +
+			input_booster,label = "MULTITOUCH";
+			input_booster,type = <3>;	/* BOOSTER_DEVICE_MULTITOUCH */
+
+			input_booster,levels = <1 2>;
+
+			/* Frequency table */
+			/* for level	:	1_Head 2_Tail*/
+			input_booster,cpu_freqs = <1300000 819000>;
+			input_booster,core_num_lock = <2 2>;
+
+			/* Time table */
+			input_booster,head_times = <1000 0>;
+			input_booster,tail_times = <0 500>;
+		};
+		booster_key@5 {
+			input_booster,label = "KEYBOARD";
+			input_booster,type = <4>;	/* BOOSTER_DEVICE_KEYBOARD */
+
+			input_booster,levels = <1 2>;
+
+			/* Frequency table */
+			/* for level	:	1_Head 2_Tail*/
+			input_booster,cpu_freqs = <1170000 1170000>;
+			input_booster,core_num_lock = <2 2>;
+
+			/* Time table */
+			input_booster,head_times = <200 200>;
+			input_booster,tail_times = <0 0>;
+		};
+		booster_key@6 {
+			input_booster,label = "MOUSE";
+			input_booster,type = <5>;	/* BOOSTER_DEVICE_MOUSE */
+
+			input_booster,levels = <1 2>;
+
+			/* Frequency table */
+			/* for level	:	1_Head 2_Tail*/
+			input_booster,cpu_freqs = <1170000 1040000>;
+			input_booster,core_num_lock = <2 2>;
+
+			/* Time table */
+			input_booster,head_times = <200 0>;
+			input_booster,tail_times = <0 300>;
+		};
+		booster_key@7 {
+			input_booster,label = "MOUSE WHEEL";
+			input_booster,type = <6>;	/* BOOSTER_DEVICE_MOUSE */
+
+			input_booster,levels = <1 2>;
+
+			/* Frequency table */
+			/* for level	:	1_Head 2_Tail*/
+			input_booster,cpu_freqs = <1170000 0>;
+			input_booster,core_num_lock = <2 2>;
+
+			/* Time table */
+			input_booster,head_times = <200 0>;
+			input_booster,tail_times = <0 0>;
+		};
+		booster_key@8 {
+			input_booster,label = "PEN HOVER";
+			input_booster,type = <7>;	/* BOOSTER_DEVICE_MOUSE */
+
+			input_booster,levels = <1 2>;
+
+			/* Frequency table */
+			/* for level	:	1_Head 2_Tail*/
+			input_booster,cpu_freqs = <1170000 1040000>;
+			input_booster,core_num_lock = <2 2>;
+
+			/* Time table */
+			input_booster,head_times = <200 0>;
+			input_booster,tail_times = <0 300>;
+		}; // Input Booster -
+	};
+
+	usb_notifier {
+		compatible = "samsung,usb-notifier";
+	};
+
+};
 
 	/* dummy nodes for cust_eint */
 	gse_1: gse_1 {
